@@ -1,0 +1,31 @@
+# 依存パッケージ
+**/node_modules/
+
+# ビルド成果物
+**/dist/
+**/build/
+
+# Gradle
+**/.gradle/
+
+# 環境変数（.env.example は追跡対象とする）
+.env
+.env.*
+!.env.example
+
+# 証明書・秘密鍵
+*.pem
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+*.tfvars
+**/.terraform/
+
+# IDE
+**/.idea/
+**/.vscode/
+
+# ローカル設定ファイル
+**/src/main/resources/application-local.yml
+.claude/settings.local.json
