@@ -34,7 +34,7 @@ PostgreSQL 17 を使用します。全テーブルの主キーは `id`（BIGSERI
 | email | VARCHAR(255) | ○ | UNIQUE | メールアドレス |
 | password_hash | VARCHAR(255) | ○ | | bcrypt ハッシュ化済みパスワード |
 | username | VARCHAR(50) | ○ | UNIQUE | ユーザー名（表示名） |
-| bio | TEXT | | | 自己紹介テキスト |
+| bio | VARCHAR(160) | | | 自己紹介テキスト（160 文字以内） |
 | profile_image_url | VARCHAR(500) | | | アイコン画像の S3 URL |
 | created_at | TIMESTAMP | ○ | DEFAULT NOW() | 作成日時 |
 | updated_at | TIMESTAMP | ○ | DEFAULT NOW() | 更新日時 |

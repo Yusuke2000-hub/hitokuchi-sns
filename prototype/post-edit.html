@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿編集 - Hitokuchi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="post-edit">
+  <!-- 投稿編集ヘッダー -->
+  <div class="compose-header" style="position:sticky;top:0;z-index:100;max-width:600px;margin:0 auto;border-bottom:1px solid var(--color-border)">
+    <button id="cancel-btn" class="compose-header__cancel">← キャンセル</button>
+    <button id="submit-btn" class="btn btn--primary btn--sm">更新する</button>
+  </div>
+
+  <main style="max-width:600px;margin:0 auto;background:#fff;min-height:calc(100vh - 56px)">
+    <div class="compose-body">
+      <div id="compose-avatar"></div>
+      <textarea id="post-content" class="compose-textarea"
+                placeholder="投稿を編集..." maxlength="300" rows="6"></textarea>
+    </div>
+
+    <div style="padding:0 16px">
+      <div class="form-error" id="content-error"></div>
+    </div>
+
+    <!-- 画像プレビュー -->
+    <div id="image-preview" class="image-preview" style="padding:0 16px" hidden>
+      <img src="" alt="画像プレビュー">
+      <button id="remove-image" class="image-preview__remove" type="button" title="画像を削除">✕</button>
+    </div>
+
+    <!-- フッター -->
+    <div class="compose-footer">
+      <div class="compose-footer__right">
+        <span id="char-counter" class="char-counter">0 / 280 文字</span>
+        <label class="btn btn--secondary btn--sm" style="cursor:pointer">
+          📷 画像を変更
+          <input id="image-input" type="file" accept="image/*" style="display:none">
+        </label>
+      </div>
+    </div>
+  </main>
+
+  <!-- モーダル（共通） -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div class="modal">
+      <div class="modal__title">確認</div>
+      <div class="modal__message" id="modal-message"></div>
+      <div class="modal__actions">
+        <button id="modal-cancel"  class="btn btn--secondary">キャンセル</button>
+        <button id="modal-confirm" class="btn btn--danger">削除する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = Auth.getCurrentUser();
+      const el   = document.getElementById('compose-avatar');
+      if (el && user) el.innerHTML = renderAvatar(user, 'avatar--md');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投稿詳細 - Hitokuchi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="post-detail">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">Hitokuchi</a>
+      <nav class="header__nav">
+        <a href="search.html" class="btn btn--icon" aria-label="ユーザー検索">🔍</a>
+        <a href="#" id="header-profile-link" class="header__username">@---</a>
+        <button id="header-logout-btn" class="btn btn--secondary btn--sm">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- サブヘッダー -->
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-bottom:1px solid var(--color-border)">
+    <div class="sub-header">
+      <a href="javascript:history.back()" class="sub-header__back">← 戻る</a>
+      <span class="sub-header__title">投稿</span>
+    </div>
+  </div>
+
+  <main class="page-content" style="padding:0 0 80px">
+    <!-- 投稿本体 -->
+    <div id="post-area" style="background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px"></div>
+
+    <!-- コメント一覧 -->
+    <div style="background:#fff;border-radius:var(--radius);box-shadow:var(--shadow)">
+      <div class="section-title">コメント (<span id="comment-count">0</span>)</div>
+      <div id="comment-list"></div>
+
+      <!-- コメント送信フォーム（未ログイン時は非表示） -->
+      <form id="comment-form" class="comment-form hidden" action="">
+        <textarea id="comment-input" class="comment-form__input"
+                  placeholder="コメントを入力..." rows="1" maxlength="280"></textarea>
+        <button type="submit" class="btn btn--primary btn--sm">送信</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- モーダル（共通） -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div class="modal">
+      <div class="modal__title">確認</div>
+      <div class="modal__message" id="modal-message"></div>
+      <div class="modal__actions">
+        <button id="modal-cancel"  class="btn btn--secondary">キャンセル</button>
+        <button id="modal-confirm" class="btn btn--danger">削除する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
