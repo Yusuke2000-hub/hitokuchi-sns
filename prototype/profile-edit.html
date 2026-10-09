@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフィール編集 - Hitokuchi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="profile-edit">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">Hitokuchi</a>
+      <nav class="header__nav">
+        <a href="#" id="header-profile-link" class="header__username">@---</a>
+        <button id="header-logout-btn" class="btn btn--secondary btn--sm">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- サブヘッダー -->
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-bottom:1px solid var(--color-border)">
+    <div class="sub-header">
+      <button id="cancel-btn" class="sub-header__back" style="background:none;border:none;cursor:pointer;font-size:15px;padding:8px 0">← キャンセル</button>
+      <span class="sub-header__title">プロフィールを編集</span>
+      <div class="sub-header__action">
+        <button id="save-btn" class="btn btn--primary btn--sm">保存する</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-content" style="background:#fff;min-height:calc(100vh - 112px)">
+    <!-- アバター -->
+    <div class="avatar-edit" style="padding-top:20px">
+      <div id="avatar-preview"></div>
+      <span class="fs-sm text-muted">（アイコンはユーザー名の頭文字から自動生成）</span>
+    </div>
+
+    <!-- フォーム -->
+    <div class="form-group">
+      <label class="form-label" for="username">ユーザー名</label>
+      <input class="form-input" type="text" id="username" name="username"
+             autocomplete="username" placeholder="ユーザー名" required>
+      <div class="form-error" id="username-error"></div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="bio">自己紹介</label>
+      <textarea class="form-textarea" id="bio" name="bio"
+                placeholder="自己紹介を入力（160文字以内）" maxlength="200" rows="4"></textarea>
+      <div class="char-counter" id="bio-counter">0 / 160 文字</div>
+      <div class="form-error" id="bio-error"></div>
+    </div>
+  </main>
+
+  <!-- モーダル（共通） -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div class="modal">
+      <div class="modal__title">確認</div>
+      <div class="modal__message" id="modal-message"></div>
+      <div class="modal__actions">
+        <button id="modal-cancel"  class="btn btn--secondary">キャンセル</button>
+        <button id="modal-confirm" class="btn btn--danger">削除する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

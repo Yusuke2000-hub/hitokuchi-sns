@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイムライン - Hitokuchi</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="timeline">
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="header__logo">Hitokuchi</a>
+      <nav class="header__nav">
+        <a href="search.html" class="btn btn--icon" aria-label="ユーザー検索">🔍</a>
+        <a href="#" id="header-profile-link" class="header__username">@---</a>
+        <button id="header-logout-btn" class="btn btn--secondary btn--sm">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タブ -->
+  <div style="max-width:600px;margin:0 auto">
+    <div class="tabs">
+      <button class="tab tab--active" data-tab="all">全体</button>
+      <button class="tab" data-tab="following">フォロー中</button>
+    </div>
+  </div>
+
+  <!-- 投稿リスト -->
+  <main class="page-content" style="padding-top:12px;padding-bottom:80px">
+    <div id="timeline-list"></div>
+    <button id="load-more-btn" class="load-more-btn" hidden>もっと見る</button>
+  </main>
+
+  <!-- FAB（ログイン済みのみ表示） -->
+  <a href="post-new.html" class="fab hidden" aria-label="投稿する">
+    ＋ 投稿する
+  </a>
+
+  <!-- モーダル（共通） -->
+  <div id="modal-overlay" class="modal-overlay" hidden>
+    <div class="modal">
+      <div class="modal__title">確認</div>
+      <div class="modal__message" id="modal-message"></div>
+      <div class="modal__actions">
+        <button id="modal-cancel"  class="btn btn--secondary">キャンセル</button>
+        <button id="modal-confirm" class="btn btn--danger">削除する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
