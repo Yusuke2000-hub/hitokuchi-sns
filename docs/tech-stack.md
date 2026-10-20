@@ -32,16 +32,14 @@
 | Java (Microsoft OpenJDK) | 21 | 実行環境 |
 | Spring Boot | 4.0.0 | アプリケーションフレームワーク |
 | Spring Security | Spring Boot 4.0.0 が管理 | 認証・認可 |
-| JWT ライブラリ | 未決定 | JWT 生成・検証 |
+| JWT ライブラリ | jjwt 0.13.0 | JWT 生成・検証 |
 | mybatis-spring-boot-starter | 4.0.1 | SQL マッパー・データアクセス |
 | Flyway | Spring Boot 4.0.0 が管理 | DB マイグレーション |
 | Gradle | 8.14 | ビルドツール |
 | Spotless (google-java-format) | - | コードフォーマッター |
 
-> **JWT ライブラリ候補:**
-> - **jjwt** 0.13.0 — Jackson 3 との競合あり（`jjwt-gson` で回避可能。Boot 4 BOM 非管理）
-> - **nimbus-jose-jwt** 10.10 — Spring Security 7 が内部利用。Security 経由なら個別バージョン指定不要
-> - **auth0/java-jwt** 4.6.2 — Jackson 非依存で Jackson 3 競合リスクが低い（Boot 4 BOM 非管理）
+> **採用: jjwt 0.13.0（jjwt-api / jjwt-impl / jjwt-jackson）**
+> Spring Boot 4 BOM は Jackson 2・3 の両方を管理するため、jjwt-jackson の Jackson 2 依存は問題なく解決される。
 
 ---
 
@@ -70,8 +68,9 @@
 
 | 技術 | バージョン | 用途 |
 |---|---|---|
-| JWT (JSON Web Token) | - | ステートレス認証トークン |
-| bcrypt | - | パスワードハッシュ化 |
+| JWT (JSON Web Token) | - | ステートレス認証トークン（Authorization: Bearer ヘッダー方式、有効期限 24時間） |
+| bcrypt | - | パスワードハッシュ化（Spring Security BCryptPasswordEncoder） |
+| CSRF | - | 無効（JWT + Bearer 方式のためセッションを使用せず不要） |
 
 ---
 
