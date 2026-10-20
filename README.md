@@ -35,7 +35,7 @@
 |---|---|
 | フロントエンド | React 19 / TypeScript 5.x / Vite 8.x / MUI |
 | バックエンド | Java 21（Microsoft OpenJDK）/ Spring Boot 4.0.0 / Gradle 8.14 |
-| データベース | PostgreSQL 17 |
+| データベース | PostgreSQL 18 |
 | インフラ | AWS（EC2・RDS・ALB・S3）/ Terraform 1.x |
 
 ---

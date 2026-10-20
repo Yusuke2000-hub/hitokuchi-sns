@@ -55,7 +55,7 @@ AWS 上に EC2 + RDS + ALB + S3 の構成でインフラを構築します。Ter
 | サービス | 用途 | 備考 |
 |---|---|---|
 | EC2 | アプリケーションサーバー | Amazon Linux 2023、t3.small 程度 |
-| RDS | マネージドデータベース | PostgreSQL 17、db.t3.micro 程度 |
+| RDS | マネージドデータベース | PostgreSQL 18、db.t3.micro 程度 |
 | ALB | ロードバランサー | HTTP → HTTPS リダイレクト、SSL 終端 |
 | S3 | 画像ストレージ | 投稿画像・プロフィールアイコンを保存 |
 | VPC | ネットワーク分離 | パブリック・プライベートサブネット |
@@ -136,7 +136,7 @@ server {
 | VPC | パブリック・プライベートサブネット、IGW |
 | Security Groups | ALB・EC2・RDS それぞれのセキュリティグループ |
 | EC2 | AMI・インスタンスタイプ・キーペア |
-| RDS | PostgreSQL 17、マルチ AZ は学習用のため無効 |
+| RDS | PostgreSQL 18、マルチ AZ は学習用のため無効 |
 | ALB | リスナー（80/443）、ターゲットグループ |
 | S3 | バケット、バケットポリシー |
 | IAM | EC2 が S3 にアクセスするためのロール |

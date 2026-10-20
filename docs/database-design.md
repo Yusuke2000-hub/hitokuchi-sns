@@ -6,7 +6,7 @@
 
 ## 概要
 
-PostgreSQL 17 を使用します。全テーブルの主キーは `id`（BIGSERIAL）とし、作成日時には `created_at`、更新日時には `updated_at` を持たせます。
+PostgreSQL 18 を使用します。全テーブルの主キーは `id`（BIGSERIAL）とし、作成日時には `created_at`、更新日時には `updated_at` を持たせます。
 
 ---
 

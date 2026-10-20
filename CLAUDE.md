@@ -32,7 +32,7 @@ RaiseTech AI講座・短文投稿型SNS「Hitokuchi」
 ### 技術スタック
 - Java 21（Microsoft OpenJDK）
 - Spring Boot 4.0.0
-- PostgreSQL 17
+- PostgreSQL 18
 - Gradle 8.14
 - フロントエンド: React 19, TypeScript 5.x, Vite 8.x
 - インフラ: Terraform 1.x / AWS（EC2・RDS・ALB・S3）
