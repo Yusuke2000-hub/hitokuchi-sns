@@ -19,6 +19,7 @@ PostgreSQL 18 を使用します。全テーブルの主キーは `id`（BIGSERI
 | comments | コメント |
 | likes | いいね |
 | follows | フォロー関係 |
+| refresh_tokens | リフレッシュトークン（認証） |
 
 ---
 
@@ -101,6 +102,21 @@ PostgreSQL 18 を使用します。全テーブルの主キーは `id`（BIGSERI
 
 ---
 
+### refresh_tokens
+
+リフレッシュトークンを管理するテーブル。ユーザー削除時は ON DELETE CASCADE で一括削除する。`revoked` は今回は使用しない（将来の無効化機能のために列を確保）。
+
+| カラム名 | 型 | NOT NULL | 制約 | 説明 |
+|---|---|---|---|---|
+| id | BIGSERIAL | ○ | PK | 主キー |
+| user_id | BIGINT | ○ | FK → users.id ON DELETE CASCADE | オーナーユーザー |
+| token | VARCHAR(255) | ○ | UNIQUE | UUID 形式のリフレッシュトークン |
+| expires_at | TIMESTAMP | ○ | | 有効期限 |
+| revoked | BOOLEAN | ○ | DEFAULT FALSE | 無効化フラグ（将来用） |
+| created_at | TIMESTAMP | ○ | DEFAULT NOW() | 作成日時 |
+
+---
+
 ## ER図
 
 ```mermaid
@@ -144,11 +160,21 @@ erDiagram
         timestamp created_at
     }
 
+    refresh_tokens {
+        bigint id PK
+        bigint user_id FK
+        varchar token UK
+        timestamp expires_at
+        boolean revoked
+        timestamp created_at
+    }
+
     users ||--o{ posts : "投稿する"
     users ||--o{ comments : "コメントする"
     users ||--o{ likes : "いいねする"
     users ||--o{ follows : "フォローする (follower)"
     users ||--o{ follows : "フォローされる (following)"
+    users ||--o{ refresh_tokens : "発行する"
     posts ||--o{ comments : "コメントされる"
     posts ||--o{ likes : "いいねされる"
 ```
@@ -167,3 +193,5 @@ erDiagram
 | follows | follower_id | フォロー中一覧取得 |
 | follows | following_id | フォロワー一覧取得 |
 | follows | (follower_id, following_id) | フォロー済み確認（UNIQUE 制約兼用） |
+| refresh_tokens | token | UUID でのトークン検索（UNIQUE 制約兼用） |
+| refresh_tokens | user_id | ユーザーごとのトークン一覧取得 |

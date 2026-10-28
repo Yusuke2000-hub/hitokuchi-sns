@@ -7,7 +7,12 @@ spring:
   flyway:
     enabled: false
 
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
 app:
   jwt:
     secret: dGVzdC1zZWNyZXQta2V5LWZvci10ZXN0aW5nLW9ubHktMTIzNDU2Nzg=
     expiration-ms: 3600000
+    refresh-expiration-ms: 604800000
