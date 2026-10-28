@@ -57,6 +57,12 @@ public class GlobalExceptionHandler {
     return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), null);
   }
 
+  @ExceptionHandler(InvalidRefreshTokenException.class)
+  @ResponseStatus(HttpStatus.UNAUTHORIZED)
+  public ErrorResponse handleInvalidRefreshToken(InvalidRefreshTokenException ex) {
+    return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), null);
+  }
+
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ErrorResponse handleException(Exception ex) {

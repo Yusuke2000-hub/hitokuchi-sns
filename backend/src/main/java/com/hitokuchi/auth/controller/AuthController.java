@@ -2,6 +2,9 @@ package com.hitokuchi.auth.controller;
 
 import com.hitokuchi.auth.dto.AuthResponse;
 import com.hitokuchi.auth.dto.LoginRequest;
+import com.hitokuchi.auth.dto.LogoutRequest;
+import com.hitokuchi.auth.dto.RefreshRequest;
+import com.hitokuchi.auth.dto.RefreshResponse;
 import com.hitokuchi.auth.dto.RegisterRequest;
 import com.hitokuchi.auth.service.AuthService;
 import jakarta.validation.Valid;
@@ -31,5 +34,16 @@ public class AuthController {
   @PostMapping("/login")
   public AuthResponse login(@RequestBody @Valid LoginRequest request) {
     return authService.login(request);
+  }
+
+  @PostMapping("/refresh")
+  public RefreshResponse refresh(@RequestBody @Valid RefreshRequest request) {
+    return authService.refresh(request);
+  }
+
+  @PostMapping("/logout")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void logout(@RequestBody @Valid LogoutRequest request) {
+    authService.logout(request);
   }
 }
