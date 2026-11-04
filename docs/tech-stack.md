@@ -108,3 +108,19 @@
 | ローカル開発用プロファイル | `local` | |
 | ローカル接続設定ファイル | `backend/src/main/resources/application-local.yml` | gitignore 対象・手動作成 |
 | テスト用 DB | H2（インメモリ） | 環境変数なしで `gradlew build` を通すため。本番・ローカル起動では PostgreSQL を使用 |
+
+---
+
+## フロントエンド開発環境設定（確定値）
+
+| 項目 | 値 | 備考 |
+|---|---|---|
+| 開発サーバーポート | `5173` | 変更禁止（CLAUDE.md） |
+| API プロキシ | `/api` → `http://localhost:8080` | `vite.config.ts` の `server.proxy` で設定（開発時の CORS 対策） |
+
+本番環境は `infrastructure.md` 記載の Nginx ルーティング（`/api/*` → Spring Boot、`/*` → dist/ 静的ファイル）により同一オリジンとなるため CORS 不要。
+
+**インストールするパッケージ（バージョンはインストール後に確定）：**
+- `@mui/material`・`@emotion/react`・`@emotion/styled`（MUI の peer dependencies）
+- `react-router-dom`（React Router のパッケージ名）
+- `axios`
