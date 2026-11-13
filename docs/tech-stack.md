@@ -16,12 +16,12 @@
 
 | 技術 | バージョン | 用途 |
 |---|---|---|
-| React | 19 | UI フレームワーク |
-| TypeScript | 5.x | 型安全な JavaScript |
-| Vite | 8.x | ビルドツール・開発サーバー |
-| MUI (Material UI) | 7.x | UI コンポーネントライブラリ |
-| React Router | 7.x | クライアントサイドルーティング |
-| Axios | 1.x | HTTP クライアント |
+| React | 19.3.1 | UI フレームワーク |
+| TypeScript | 7.0.2 | 型安全な JavaScript |
+| Vite | 8.3.5 | ビルドツール・開発サーバー |
+| MUI (Material UI) | 9.5.0 | UI コンポーネントライブラリ |
+| React Router | 7.18.5 | クライアントサイドルーティング |
+| Axios | 1.21.0 | HTTP クライアント |
 
 ---
 
