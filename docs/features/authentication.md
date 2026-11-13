@@ -6,7 +6,7 @@
 
 ## 機能概要
 
-メールアドレスとパスワードによる新規登録・ログイン・ログアウト・トークン再発行。認証には JWT（アクセストークン）と UUID（リフレッシュトークン）を組み合わせて使用する。フロントエンドでのトークン保存場所はフロントエンド認証の Issue で決定する。以降の API リクエストは Authorization ヘッダーに Bearer トークンを付与して送信する。
+メールアドレスとパスワードによる新規登録・ログイン・ログアウト・トークン再発行。認証には JWT（アクセストークン）と UUID（リフレッシュトークン）を組み合わせて使用する。フロントエンドでのトークン保存場所は localStorage（accessToken / refreshToken / userId / username）。以降の API リクエストは Authorization ヘッダーに Bearer トークンを付与して送信する。
 
 ---
 
@@ -231,3 +231,29 @@
   "message": "このメールアドレスはすでに登録されています"
 }
 ```
+
+---
+
+## フロントエンド実装決定事項
+
+### axios インターセプター
+
+| 処理 | 内容 |
+|---|---|
+| リクエスト | `Authorization: Bearer <accessToken>` ヘッダーを付与 |
+| 401 受信時 | `POST /api/auth/refresh` を呼んで accessToken を更新し、元のリクエストをリトライ |
+| 複数同時 401 | リフレッシュを1回だけ実行する（Promise を共有してキュー制御） |
+| `/api/auth/` 配下の 401 | login / register / refresh 自身のエラーには自動リフレッシュをしない |
+| refresh 失敗時 | localStorage のトークン・ユーザー情報を削除して `/login` へ遷移 |
+
+### ログアウト（フロントエンド側）
+
+1. `POST /api/auth/logout`（本文: `refreshToken`）を呼ぶ
+2. 成否に関わらず localStorage の `accessToken`・`refreshToken`・`userId`・`username` を削除する
+3. `/login` へ遷移する
+
+### エラー表示
+
+- バックエンドレスポンスの `message` を画面に表示する
+- ステータス 400 の場合は `errors` 配列の各 `message` も画面に表示する
+- パスワード確認の不一致はフロント側で「パスワードが一致しません」と表示する（バックエンドには送らない）
